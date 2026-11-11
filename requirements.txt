@@ -1,0 +1,7 @@
+Pillow>=10.0
+websockets>=12.0
+opuslib>=3.0.1
+sounddevice>=0.4.6
+pymicro-wakeword>=2.3,<3  # 2.x = bundled libtensorflowlite_c; 1.0 needed full tensorflow
+pyyaml>=6.0
+aiohttp>=3.9.0

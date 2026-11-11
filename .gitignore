@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+*.egg-info/
+.env
+
+# your device config (secrets) - copy from config.example.yaml
+config.yaml
+
+# runtime data written on the device
+notes/
+data/
+meetings/
+capture/
+
+# third-party sound - see assets/README.md for where to get it
+assets/sounds/wake_word_triggered.wav
+assets/icons/*.png
+assets/fonts/*.ttf

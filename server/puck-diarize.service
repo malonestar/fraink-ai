@@ -1,0 +1,18 @@
+[Unit]
+Description=Speaker diarization + report PDF for the Puck Meeting app (sherpa-onnx, CPU) on :8895
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# adjust User / paths to where you put server/
+User=pi
+WorkingDirectory=/opt/puck-server
+ExecStart=/opt/puck-server/.venv/bin/python /opt/puck-server/diarize_server.py
+Environment=DIARIZE_PORT=8895
+Environment=DIARIZE_THREADS=8
+Restart=on-failure
+RestartSec=5
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

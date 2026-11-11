@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PiSugar WiFi Setup</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 400px; margin: 40px auto; padding: 0 20px; background: #1a1a2e; color: #e0e0e0; }
+  h1 { color: #0f9bff; font-size: 1.4em; }
+  label { display: block; margin: 16px 0 4px; font-size: 0.9em; color: #aaa; }
+  select, input { width: 100%; padding: 12px; border: 1px solid #333; border-radius: 8px; background: #16213e; color: #e0e0e0; font-size: 1em; box-sizing: border-box; }
+  button { width: 100%; padding: 14px; margin-top: 24px; border: none; border-radius: 8px; background: #0f9bff; color: white; font-size: 1.1em; cursor: pointer; }
+  button:hover { background: #0d8ae0; }
+  .status { margin-top: 16px; padding: 12px; border-radius: 8px; background: #16213e; text-align: center; }
+  .ok { color: #00c853; }
+  .err { color: #ff5252; }
+</style>
+</head>
+<body>
+  <h1>PiSugar WiFi Setup</h1>
+  <form id="form">
+    <label for="ssid">Network</label>
+    <select id="ssid"></select>
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter WiFi password">
+    <button type="submit">Connect</button>
+  </form>
+  <div id="status" class="status" style="display:none"></div>
+  <script>
+    fetch('/api/scan').then(r=>r.json()).then(nets=>{
+      const sel=document.getElementById('ssid');
+      nets.forEach(n=>{
+        const o=document.createElement('option');
+        o.value=n.ssid; o.textContent=n.ssid+(n.signal?' ('+n.signal+'dBm)':'');
+        sel.appendChild(o);
+      });
+    });
+    document.getElementById('form').addEventListener('submit',e=>{
+      e.preventDefault();
+      const st=document.getElementById('status');
+      st.style.display='block'; st.className='status'; st.textContent='Connecting...';
+      fetch('/api/connect',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ssid:document.getElementById('ssid').value,
+          password:document.getElementById('password').value})
+      }).then(r=>r.json()).then(d=>{
+        if(d.ok){st.className='status ok';st.textContent='Connected! This page will close.';}
+        else{st.className='status err';st.textContent='Failed: '+d.error;}
+      }).catch(()=>{st.className='status ok';st.textContent='Connecting... page may disconnect.';});
+    });
+  </script>
+</body>
+</html>
