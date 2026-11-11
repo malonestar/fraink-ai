@@ -1,8 +1,8 @@
 #!/bin/bash
-# Puck - device setup for a fresh Raspberry Pi OS Lite (64-bit, Trixie)
+# frAInk - device setup for a fresh Raspberry Pi OS Lite (64-bit, Trixie)
 # on a Pi Zero 2 W + PiSugar 3 + PiSugar WhisPlay.
 #
-#   git clone https://github.com/<you>/puck-ai ~/puck-ai && cd ~/puck-ai && ./setup.sh
+#   git clone https://github.com/<you>/fraink-ai ~/fraink-ai && cd ~/fraink-ai && ./setup.sh
 #
 # Safe to re-run. Reboot when it finishes.
 set -e
@@ -35,9 +35,9 @@ import json, os
 p = "/etc/pisugar-server/config.json"
 cfg = json.load(open(p)) if os.path.exists(p) else {}
 cfg.update({
-    "single_tap_enable": True, "single_tap_shell": "touch /tmp/puck/single",
-    "double_tap_enable": False, "double_tap_shell": "touch /tmp/puck/double",
-    "long_tap_enable": True, "long_tap_shell": "touch /tmp/puck/long",
+    "single_tap_enable": True, "single_tap_shell": "touch /tmp/pisugar-companion/single",
+    "double_tap_enable": False, "double_tap_shell": "touch /tmp/pisugar-companion/double",
+    "long_tap_enable": True, "long_tap_shell": "touch /tmp/pisugar-companion/long",
     "auto_shutdown_level": 5.0, "auto_shutdown_delay": 30.0,
 })
 os.makedirs(os.path.dirname(p), exist_ok=True)
@@ -61,20 +61,20 @@ python3 -m venv --system-site-packages .venv
 mkdir -p notes/audio meetings data
 [ -f config.yaml ] || cp config.example.yaml config.yaml
 
-sed -e "s|/home/pi/puck-ai|$APP_DIR|g" -e "s|^User=pi|User=$USER|" puck.service \
-    | sudo tee /etc/systemd/system/puck.service >/dev/null
-sudo mkdir -p /etc/systemd/system/puck.service.d
+sed -e "s|/home/pi/fraink-ai|$APP_DIR|g" -e "s|^User=pi|User=$USER|" fraink.service \
+    | sudo tee /etc/systemd/system/fraink.service >/dev/null
+sudo mkdir -p /etc/systemd/system/fraink.service.d
 printf "[Service]\n# Wi-Fi setup captive portal listens on :80\nAmbientCapabilities=CAP_NET_BIND_SERVICE\n" \
-    | sudo tee /etc/systemd/system/puck.service.d/portal-port80.conf >/dev/null
+    | sudo tee /etc/systemd/system/fraink.service.d/portal-port80.conf >/dev/null
 sudo usermod -aG audio,video,gpio,input,spi,i2c "$USER"
 sudo systemctl daemon-reload
-sudo systemctl enable puck.service
+sudo systemctl enable fraink.service
 
 cat <<EOF
 
 === Done ===
 1. Edit $APP_DIR/config.yaml (server URLs, ntfy token, email app password).
-2. sudo tailscale up --hostname=puck    (open the login link it prints)
+2. sudo tailscale up --hostname=fraink    (open the login link it prints)
 3. sudo reboot
-Logs: journalctl -u puck -f
+Logs: journalctl -u fraink -f
 EOF

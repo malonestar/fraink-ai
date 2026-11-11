@@ -68,7 +68,7 @@ class XiaozhiClient:
                  on_audio: Optional[Callable[[bytes], Awaitable[None]]] = None,
                  on_json: Optional[Callable[[dict], Awaitable[None]]] = None,
                  reconnect_backoff_base: float = 1.0):
-        self._device_id = config.get("server", {}).get("device_id", "puck")
+        self._device_id = config.get("server", {}).get("device_id", "fraink")
         self._client_id = config.get("server", {}).get("client_id", str(uuid.uuid4()))
         self._protocol_version = config.get("server", {}).get("protocol_version", 1)
         self._reconnect_backoff_base = reconnect_backoff_base

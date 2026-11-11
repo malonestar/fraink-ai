@@ -1,4 +1,4 @@
-# Puck - device config. Copy to config.yaml and fill in your own values:
+# frAInk - device config. Copy to config.yaml and fill in your own values:
 #   cp config.example.yaml config.yaml
 # config.yaml is gitignored. Anything you leave out falls back to the code defaults.
 
@@ -6,7 +6,7 @@
 server:
   websocket_url_lan: "ws://AI_SERVER_LAN_IP:8000/api/ws"          # used on your home network
   websocket_url_tailscale: "ws://AI_SERVER_TAILNET_IP:8000/api/ws" # used everywhere else
-  device_id: "puck-01"
+  device_id: "fraink-01"
   client_id: ""          # generated on first run if empty
   protocol_version: 1
 

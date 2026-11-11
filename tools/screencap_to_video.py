@@ -2,7 +2,7 @@
 """Turn a Screen Rec session into a crisp MP4 (runs on the PC, not the Pi).
 
     # copy a session off the device first, e.g.
-    scp -r pi@puck:~/puck-ai/capture/2026-11-07_14-03-22 .
+    scp -r pi@fraink:~/fraink-ai/capture/2026-11-07_14-03-22 .
     python tools/screencap_to_video.py 2026-11-07_14-03-22            # -> .mp4 next to it
     python tools/screencap_to_video.py SESSION --scale 4 --fps 60 --png
 

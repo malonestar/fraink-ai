@@ -1,4 +1,4 @@
-"""Where Puck keeps its runtime data: next to the code (the repo checkout)."""
+"""Where frAInk keeps its runtime data: next to the code (the repo checkout)."""
 
 import os
 

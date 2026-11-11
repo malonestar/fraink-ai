@@ -36,8 +36,8 @@ import aiohttp
 
 log = logging.getLogger(__name__)
 
-AI_SERVER = os.environ.get("PUCK_AI_SERVER", "ai-server")      # set real URLs in config.yaml -> ai_services
-LLM_SERVER = os.environ.get("PUCK_AI_LLM_SERVER", AI_SERVER)  # big-model box (vLLM / OpenAI API)
+AI_SERVER = os.environ.get("FRAINK_AI_SERVER", "ai-server")      # set real URLs in config.yaml -> ai_services
+LLM_SERVER = os.environ.get("FRAINK_AI_LLM_SERVER", AI_SERVER)  # big-model box (vLLM / OpenAI API)
 
 DEFAULT_SPEACHES_URL = f"http://{AI_SERVER}:8001"
 DEFAULT_OLLAMA_FAST_URL = f"http://{AI_SERVER}:11434"

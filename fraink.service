@@ -1,12 +1,12 @@
 [Unit]
-Description=Puck - fully local pocket AI
+Description=frAInk - fully local pocket AI
 After=network-online.target pisugar-server.service
 Wants=network-online.target
 
 [Service]
 # setup.sh rewrites the paths and User= for your install
-ExecStart=/home/pi/puck-ai/.venv/bin/python /home/pi/puck-ai/main.py
-WorkingDirectory=/home/pi/puck-ai
+ExecStart=/home/pi/fraink-ai/.venv/bin/python /home/pi/fraink-ai/main.py
+WorkingDirectory=/home/pi/fraink-ai
 Restart=always
 RestartSec=3
 User=pi

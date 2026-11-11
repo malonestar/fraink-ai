@@ -1,4 +1,4 @@
-"""Speaker diarization service for the Puck Meeting app (runs on your AI server, CPU only).
+"""Speaker diarization service for the frAInk Meeting app (runs on your AI server, CPU only).
 
 POST /diarize  body = WAV (16 kHz mono 16-bit preferred; other rates are
                resampled linearly).  Query params (optional):

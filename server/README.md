@@ -11,8 +11,8 @@ audio to get "who spoke when", and the finished report HTML to get a PDF.
 ## Setup
 
 ```bash
-sudo mkdir -p /opt/puck-server && sudo chown $USER /opt/puck-server
-cp diarize_server.py /opt/puck-server/ && cd /opt/puck-server
+sudo mkdir -p /opt/fraink-server && sudo chown $USER /opt/fraink-server
+cp diarize_server.py /opt/fraink-server/ && cd /opt/fraink-server
 python3 -m venv .venv
 .venv/bin/pip install sherpa-onnx numpy weasyprint
 
@@ -23,8 +23,8 @@ wget https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition
 cd ..
 
 # edit User= in the service file, then:
-sudo cp puck-diarize.service /etc/systemd/system/
-sudo systemctl enable --now puck-diarize
+sudo cp fraink-diarize.service /etc/systemd/system/
+sudo systemctl enable --now fraink-diarize
 curl localhost:8895/health
 ```
 

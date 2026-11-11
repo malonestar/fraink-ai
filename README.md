@@ -1,8 +1,8 @@
-# Puck
+# frAInk
 
 **The fully local pocket AI device you'll actually use.**
 
-Puck is a pocket-sized voice assistant built on a Raspberry Pi Zero 2 W, a
+frAInk is a pocket-sized voice assistant built on a Raspberry Pi Zero 2 W, a
 PiSugar 3 battery and a PiSugar WhisPlay screen/mic/speaker board. Wake it
 with **"Hey Frank"**.
 
@@ -70,19 +70,19 @@ xiaozhi server config.
 2. Boot, SSH in, then:
 
    ```bash
-   git clone https://github.com/malonestar/puck-ai ~/puck-ai
-   cd ~/puck-ai
+   git clone https://github.com/malonestar/fraink-ai ~/fraink-ai
+   cd ~/fraink-ai
    ./setup.sh
    ```
 
    This installs the WhisPlay driver, the PiSugar power manager, Tailscale,
-   a Python venv and the `puck` systemd service.
-3. Edit `~/puck-ai/config.yaml` — your server addresses, ntfy token and
+   a Python venv and the `fraink` systemd service.
+3. Edit `~/fraink-ai/config.yaml` — your server addresses, ntfy token and
    email app password. (`config.yaml` is gitignored; the template is
    [`config.example.yaml`](config.example.yaml).)
 4. `sudo tailscale up` and open the login link, then `sudo reboot`.
 
-Logs: `journalctl -u puck -f`
+Logs: `journalctl -u fraink -f`
 
 ## Using it
 

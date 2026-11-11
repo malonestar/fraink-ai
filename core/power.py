@@ -3,7 +3,7 @@ import subprocess
 
 log = logging.getLogger(__name__)
 
-SERVICE_NAME = "puck"
+SERVICE_NAME = "fraink"
 
 
 def _run(cmd: list[str]):
